@@ -11,9 +11,6 @@
 * **Spread Variations:** Support for Single Card, 3-Card, and the 10-card Celtic Cross.
 * **Interactive Ritual:** A "Reveal" mechanic to keep the focus on the intention before the cards are shown.
 
-## 🛠️ Setup
-1. **Requirements:** `streamlit`, `Pillow`
-2. **Run:** `python -m streamlit run tarot_v.py`
-
 ---
+
 *Close your eyes and clear your head, focus your thoughts and select a spread.*
