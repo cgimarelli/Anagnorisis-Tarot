@@ -737,7 +737,7 @@ if st.session_state.current_spread:
     _, reveal_col, _ = st.columns([1, 1, 1])
     with reveal_col:
         if not st.session_state.flipped:
-            if st.button("℈ Reveal Spread ℰℲ"):
+            if st.button("Reveal Spread"):
                 st.session_state.flipped = True
                 st.rerun()
 
@@ -804,4 +804,5 @@ if st.session_state.current_spread:
 if st.button("Reset"):
     st.session_state.current_spread = []
     st.session_state.spread_type = None
+
     st.rerun()
