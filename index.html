@@ -24,6 +24,7 @@
         .poem-title { font-weight: bold; color: white; margin-bottom: 8px; }
         .poem-body { font-style: italic; white-space: pre-line; color: #ddd; }
         .reversed { transform: rotate(180deg); }
+        .crossed { transform: rotate(90deg); }
         .grid-celtic { display: grid; grid-template-areas: ". . pos3 . pos10" "pos5 pos1 pos2 pos6 pos9" ". . pos4 . pos8" ". . . . pos7"; grid-template-columns: repeat(5, 1fr); gap: 20px; justify-content: center; align-items: center; margin-top: 20px; }
     </style>
 </head>
@@ -83,8 +84,10 @@
             poemsList.innerHTML = '';
 
             currentSpread.forEach((card, index) => {
-                const rc = card.rev ? 'reversed' : '';
-                grid.innerHTML += `<div class="card-item" style="grid-area: pos${index + 1}"><img src="cards/${card.name}" class="card-img ${rc}"></div>`;
+                const isPos2 = (index === 1 && currentSpread.length === 10);
+                const rotationClass = isPos2 ? 'crossed' : (card.rev ? 'reversed' : '');
+                
+                grid.innerHTML += `<div class="card-item" style="grid-area: pos${index + 1}"><img src="cards/${card.name}" class="card-img ${rotationClass}"></div>`;
                 poemsList.innerHTML += `
                     <div class="poem-entry">
                         <div class="poem-title">${card.name.replace('.png', '')}${card.rev ? ' (Reversed)' : ''}</div>
