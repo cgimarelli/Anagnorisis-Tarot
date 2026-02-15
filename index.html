@@ -15,13 +15,13 @@
         button:hover { background-color: #666; }
         .reset-btn { background-color: #600; margin-top: 20px; }
         .spread-container { margin-top: 50px; text-align: center; }
-        .reveal-btn { background-color: #d4af37; color: black; padding: 15px 30px; font-weight: bold; font-size: 1.2em; margin-bottom: 30px; }
+        .reveal-btn { background-color: #444; color: black; padding: 15px 30px; font-weight: bold; font-size: 1.2em; margin-bottom: 30px; }
         .cards-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
         .card-item { width: 180px; }
         .card-img { width: 100%; border-radius: 8px; border: 1px solid #444; }
         .oracle-header { border-top: 1px solid #444; margin-top: 50px; padding-top: 20px; text-align: left; }
         .poem-entry { margin-bottom: 25px; padding: 15px; background: #1a152e; border-radius: 8px; }
-        .poem-title { font-weight: bold; color: #d4af37; margin-bottom: 8px; }
+        .poem-title { font-weight: bold; color: #260080; margin-bottom: 8px; }
         .poem-body { font-style: italic; white-space: pre-line; color: #ddd; }
     </style>
 </head>
@@ -94,84 +94,483 @@
 
         // --- THE DATA ---
         const cardData = {
-            "0 The Fool.png": `Upon the cliff's edge, a leap is found, \nWith light in the heart and feet off the ground. \nThe journey begins where the old path ends.`,
-            "1 The Magician.png": `Above and below, the spark finds its way, \nTo shape the new world in the light of the day.`,
-            "2 The High Priestess.png": `In silence and shadow, the wisdom is kept, \nWhere secrets of old have peacefully slept.`,
-            "3 The Empress.png": `The garden is blooming in velvet and green, \nThe kindest of rhythms that ever were seen.`,
-            "4 The Emperor.png": `A foundation of stone and a mountain of grace, \nProviding the structure and safety of space.`,
-            "5 The Heirophant.png": `The bridge of tradition, the teacher of old, \nWhere sacred traditions and truths are told.`,
-            "6 The Lovers.png": `Two souls in a dance where the values align, \nA harmony crafted by sacred design.`,
-            "7 The Chariot.png": `With reins held by focus and eyes on the light, \nThe path opens wide in the wake of the flight.`,
-            "8 Strength.png": `A lion is calmed by the touch of a hand, \nThe quietest power in all of the land.`,
-            "9 The Hermit.png": `A lantern is lit in the quiet of night, \nTo find in the stillness a secondary sight.`,
-            "10 The Wheel of Fortune.png": `The seasons are turning in circles of gold, \nAs stories of change and of wonder unfold.`,
-            "11 Justice.png": `The scales are held level in clarity's light, \nTo favor the truth and the vision of right.`,
-            "12 The Hanged Man.png": `The world is turned over to see from above, \nIn a peaceful surrender and quiet of love.`,
-            "13 Death.png": `The autumn must come so the winter can rest, \nA clearing of paths for the new and the blest.`,
-            "14 Temperance.png": `From two different cups flows a single bright stream, \nThe calm of a prayer and the hope of a dream.`,
-            "15 The Devil.png": `An awareness of ties that have tethered the soul, \nTo reclaim the power that makes a life whole.`,
-            "16 The Tower.png": `A sudden bright flash and the walls fall away, \nTo let in the truth and the light of the day.`,
-            "17 The Star.png": `One great light is shining above and within, \nWhere hope and the healing of spirit begin.`,
-            "18 The Moon.png": `A silver-lit world where the mysteries play, \nInviting the spirit to wander its way.`,
-            "19 The Sun.png": `The morning has broken in radiant gold, \nAs stories of triumph and spirit unfold.`,
-            "20 Judgement.png": `A call from the silence, a clear, ringing tone, \nWhere the truth of the journey is gracefully known.`,
-            "21 The World.png": `The dance is completed, the circle is run, \nThe labor is over, the victory won.`,
-            "1 of Cups.png": `A wellspring is opening, cool and so deep, \nWhere promises ancient and beautiful sleep.`,
-            "2 of Cups.png": `Two Fish in a circle, a dance in the tide, \nWith nothing to fear and with nothing to hide.`,
-            "3 of Cups.png": `Three Fish in the shallows are gathered in play, \nIn a bright celebration of a beautiful day.`,
-            "4 of Cups.png": `Four Fish in the stillness, a quiet retreat, \nWhere the pulse of the ocean is steady and sweet.`,
-            "5 of Cups.png": `Five Fish are migrating to a fresh, flowing stream, \nFollowing the light of a comforting dream.`,
-            "6 of Cups.png": `Six Fish in the sunlight, a memory's glow, \nOf the sweet, simple joys that we used to know.`,
-            "7 of Cups.png": `Seven Fish drifting in an ocean of choice, \nListening deep for the internal voice.`,
-            "8 of Cups.png": `Eight Fish are swimming to a much deeper blue, \nTo find a perspective that's honest and new.`,
-            "9 of Cups.png": `Nine Fish in a garden of coral and light, \nA vision of plenty and a heart's delight.`,
-            "10 of Cups.png": `Ten Fish in a school, in a radiant line, \nA vision of harmony, bright and divine.`,
-            "Page of Cups.png": `The Angel Fish drifts with a curious grace, \nFinding the wonder in every new space.`,
-            "Knight of Cups.png": `The Swordfish is surging through currents of blue, \nTo follow the quest of the honest and true.`,
-            "Queen of Cups.png": `The Beta Fish gazes to the right and the deep, \nWhere secrets of healing and intuition sleep.`,
-            "King of Cups.png": `The Beta Fish turns to the left and the shore, \nA guardian of peace who asks nothing more.`,
-            "1 of Pentacles.png": `The Bottom Egg rests in the richness of soil, \nThe promise of harvest and reward for the toil.`,
-            "2 of Pentacles.png": `Two Eggs of Life in a rhythmic refrain, \nLike sunlight and shadow or dancing in rain.`,
-            "3 of Pentacles.png": `Three Eggs of Life in a pattern of three, \nA vision of what a great effort can be.`,
-            "4 of Pentacles.png": `Four Eggs of Life in a square of repose, \nThe safety and comfort that certainty knows.`,
-            "5 of Pentacles.png": `Five Eggs of Life in a search for the light, \nTo find a new warmth in the chill of the night.`,
-            "6 of Pentacles.png": `Six Eggs of Life in a gesture of care, \nThe kindness of spirit that's willing to share.`,
-            "7 of Pentacles.png": `Seven Eggs of Life in a garden of rest, \nWhere the work of the season is quietly blest.`,
-            "8 of Pentacles.png": `Eight Eggs of Life under diligent hands, \nThe focus and craft that the spirit demands.`,
-            "9 of Pentacles.png": `Nine Eggs of Life in a garden so fair, \nWith a sense of refinement and grace in the air.`,
-            "10 of Pentacles.png": `Ten Eggs of Life in a legacy grand, \nLike a forest that grows on a fertile land.`,
-            "Page of Pentacles.png": `A tiny, golden seed in the center of sight, \nA focused beginning in clarity's light.`,
-            "Knight of Pentacles.png": `A growing Egg in a circle of strength, \nDetermined to travel the road's every length.`,
-            "Queen of Pentacles.png": `A large, centered Egg in a circle of grace, \nBringing a warmth to the heart of the space.`,
-            "King of Pentacles.png": `The Egg is now fitted, the circle is grand, \nA master of all in the reach of the land.`,
-            "1 of Swords.png": `The Four Point Star cuts through the grey and the cold, \nWith a truth that is daring and a mind that is bold.`,
-            "2 of Swords.png": `Two Stars in the silence are balanced and still, \nAt the center of thought and a quieted will.`,
-            "3 of Swords.png": `Three Stars in the heavens are shedding their light, \nTo clear out the shadows and sharpen the sight.`,
-            "4 of Swords.png": `Four Stars in a canopy, steady and bright, \nA shield for the spirit in the quiet of night.`,
-            "5 of Swords.png": `Five Stars are now shifting to a different sky, \nAs the old ways of thinking are passing us by.`,
-            "6 of Swords.png": `Six Stars like a beacon are lighting the way, \nFrom the mists of the night to the light of the day.`,
-            "7 of Swords.png": `Seven Stars sparkle with a clever design, \nAs the pieces of planning begin to align.`,
-            "8 of Swords.png": `Eight Stars are a circle of light in the air, \nA moment of waiting with a mindful care.`,
-            "9 of Swords.png": `Nine Stars in the rafters are beginning to glow, \nAs the currents of thought and of consciousness flow.`,
-            "10 of Swords.png": `Ten Stars in a line as the cycle is through, \nTo welcome a morning that's honest and new.`,
-            "Page of Swords.png": `A sudden spark in a vast, open sky, \nWhere the first sharp thoughts of the spirit fly.`,
-            "Knight of Swords.png": `A double-bright flash in the heat of the race, \nWith the wind of the heavens upon his face.`,
-            "Queen of Swords.png": `A steady brilliance that anchors the night, \nWith a crystalline focus and unwavering light.`,
-            "King of Swords.png": `The highest of lights in a crown of the air, \nWith a mind that is principled, noble, and fair.`,
-            "1 of Wands.png": `The Dove takes flight on a wing and a prayer, \nWith a spark of new spirit that lightens the air.`,
-            "2 of Wands.png": `Two Swallows are perched on the edge of the world, \nWith the map of a journey about to be furled.`,
-            "3 of Wands.png": `Three Swallows are watching the rise of the sun, \nFor the wonderful ventures that have just begun.`,
-            "4 of Wands.png": `Four Swallows are nesting in safety and peace, \nWhere the worries of travel and wandering cease.`,
-            "5 of Wands.png": `Five Swallows are circling in a lively display, \nIn a healthy exchange on a bright, busy day.`,
-            "6 of Wands.png": `Six Swallows are gliding in a triumphant line, \nWhere the honors of spirit and victory shine.`,
-            "7 of Wands.png": `Seven Swallows are holding their place in the sky, \nWith a courage of heart and a spirit so high.`,
-            "8 of Wands.png": `Eight Swallows are darting in a swift, golden stream, \nLike the flight of a wish or the pulse of a dream.`,
-            "9 of Wands.png": `Nine Swallows are resting on a sturdy-built wall, \nReady to rise and to answer the call.`,
-            "10 of Wands.png": `Ten Swallows are nearing the end of the flight, \nAs the home in the distance comes into the sight.`,
-            "Page of Wands.png": `A swift shadow against the bright blue, \nWith a heart that is eager and a vision that's new.`,
-            "Knight of Wands.png": `A surge of spirit in high-energy flight, \nAcross the wide heavens in the heat of the light.`,
-            "Queen of Wands.png": `Rising high with a confident grace, \nBringing a warmth and a light to the space.`,
-            "King of Wands.png": `Scanning the future with a visionary eye, \nA master of fire in the vast, open sky.`
+            // --- MAJOR ARCANA ---
+            "0 The Fool.png": `Upon the cliff's edge, a leap is found, 
+                With light in the heart and feet off the ground. 
+                The journey begins where the old path ends, 
+                A spirit of wonder that beauty intends. 
+                Infinite potential in every stride, 
+                With trust as the compass and joy as the guide.`,
+            "1 The Magician.png": `Above and below, the spark finds its way, 
+                To shape the new world in the light of the day. 
+                With focused intent and a will made of gold, 
+                The stories of spirit in matter unfold. 
+                All elements gather to answer the call, 
+                The power of vision is shared with us all.`,
+            "2 The High Priestess.png": `In silence and shadow, the wisdom is kept, 
+                Where secrets of old have peacefully slept. 
+                She sits at the veil where the inner tides flow, 
+                Teaching the spirit to listen and know. 
+                Deep as the ocean and quiet as starlight, 
+                She guides through the mystery into the bright.`,
+            "3 The Empress.png": `The garden is blooming in velvet and green, 
+                The kindest of rhythms that ever were seen. 
+                A nurturing hand on the pulse of the earth, 
+                Bringing the beauty of nature to birth. 
+                Abundance is flowing in sunlight and grain, 
+                A soft, steady heartbeat in wind and in rain.`,
+            "4 The Emperor.png": `A foundation of stone and a mountain of grace, 
+                Providing the structure and safety of space. 
+                The protector of order, the guardian of peace, 
+                Granting the strength that lets worries cease. 
+                With steady conviction and leadership true, 
+                He builds up the world for the many and few.`,
+            "5 The Heirophant.png": `The bridge of tradition, the teacher of old, 
+                Where sacred traditions and truths are told. 
+                A gathering place for the curious mind, 
+                Where wisdom and ritual are gently entwined. 
+                He shares the deep knowledge that history brings, 
+                The quiet, great spirit in all living things.`,
+            "6 The Lovers.png": `Two souls in a dance where the values align, 
+                A harmony crafted by sacred design. 
+                In every choice, there is truth to be found, 
+                Where kindness and empathy truly abound. 
+                A mirror of spirit, a beautiful bond, 
+                Of the love in the heart and the reaches beyond.`,
+            "7 The Chariot.png": `With reins held by focus and eyes on the light, 
+                The path opens wide in the wake of the flight. 
+                Determination is steady and strong, 
+                Moving the spirit to where we belong. 
+                Victory comes as the confidence grows, 
+                A river of purpose that perfectly flows.`,
+            "8 Strength.png": `A lion is calmed by the touch of a hand, 
+                The quietest power in all of the land. 
+                Not by the sword, but by courage of soul, 
+                The spirit is balanced and perfectly whole. 
+                A resilient heart that is gentle and deep, 
+                The promises made are the promises kept.`,
+            "9 The Hermit.png": `A lantern is lit in the quiet of night, 
+                To find in the stillness a secondary sight. 
+                Reflecting on wisdom that lives in the core, 
+                Opening gently a spiritual door. 
+                In moments of solitude, clarity stays, 
+                To guide every step through the world's busy maze.`,
+            "10 The Wheel of Fortune.png": `The seasons are turning in circles of gold, 
+                As stories of change and of wonder unfold. 
+                A shift in the vision, a turn in the tide, 
+                With grace as the anchor and luck as the guide. 
+                The flow of the universe, steady and vast, 
+                Bringing the future to rise from the past.`,
+            "11 Justice.png": `The scales are held level in clarity's light, 
+                To favor the truth and the vision of right. 
+                A harvest is gathered from seeds we have sown, 
+                The cause and the effect are gracefully known. 
+                With balance as teacher and honesty's key, 
+                The mind is composed and the spirit is free.`,
+            "12 The Hanged Man.png": `The world is turned over to see from above, 
+                In a peaceful surrender and quiet of love. 
+                A pause in the rhythm, a spiritual grace, 
+                To find a new truth in a motionless space. 
+                The release of the struggle brings insight to light, 
+                Turning the shadows to colors so bright.`,
+            "13 Death.png": `The autumn must come so the winter can rest, 
+                A clearing of paths for the new and the blest. 
+                The old chapter closes and fades from the view, 
+                To make a wide space for the vibrant and new. 
+                A quiet transformation, a sacred release, 
+                The dawn of a journey in beauty and peace.`,
+            "14 Temperance.png": `From two different cups flows a single bright stream, 
+                The calm of a prayer and the hope of a dream. 
+                A blending of spirits, a patient accord, 
+                Where harmony acts as its own great reward. 
+                With moderation and kindness combined, 
+                The middle path opens for heart and for mind.`,
+            "15 The Devil.png": `An awareness of ties that have tethered the soul, 
+                To reclaim the power that makes a life whole. 
+                Deep hidden desires are brought to the day, 
+                As shadows of doubt are all melted away. 
+                The keys to the freedom are held in the hand, 
+                To walk with great strength in a limitless land.`,
+            "16 The Tower.png": `A sudden bright flash and the walls fall away, 
+                To let in the truth and the light of the day. 
+                The heavy foundations are cleared from the site, 
+                To build a new structure of wisdom and light. 
+                A breakthrough of spirit, a shift in the soul, 
+                Revealing the truth that will make the path whole.`,
+            "17 The Star.png": `One great light is shining above and within, 
+                Where hope and the healing of spirit begin. 
+                A calm inspiration, a soft, steady glow, 
+                As waters of peace in the quietude flow. 
+                The storm has subsided, the heavens are clear, 
+                With renewal and promise now drawing so near.`,
+            "18 The Moon.png": `A silver-lit world where the mysteries play, 
+                Inviting the spirit to wander its way. 
+                The beauty of dreams and the pull of the tide, 
+                With intuition as a soft, glowing guide. 
+                In the unknown shadows, a treasure is found, 
+                Where imagination and magic abound.`,
+            "19 The Sun.png": `The morning has broken in radiant gold, 
+                As stories of triumph and spirit unfold. 
+                Vitality rises and clarity sings, 
+                The joy that a beautiful consciousness brings. 
+                In the warmth of the light, all things are made plain, 
+                Like the sun after clouds and the bloom after rain.`,
+            "20 Judgement.png": `A call from the silence, a clear, ringing tone, 
+                Where the truth of the journey is gracefully known. 
+                A time for reflection, a fresh start to make, 
+                As a higher purpose begins to awake. 
+                The spirit is ready, the vision is clear, 
+                A new day is rising and drawing us near.`,
+            "21 The World.png": `The dance is completed, the circle is run, 
+                The labor is over, the victory won. 
+                A sense of belonging, a place in the whole, 
+                The quiet fulfillment of heart and of soul. 
+                Every thread is connected, the tapestry bright, 
+                In a garden of harmony, color, and light.`,
+
+            // --- CUPS ---
+            "1 of Cups.png": `A wellspring is opening, cool and so deep, 
+                Where promises ancient and beautiful sleep. 
+                The gift of the Seahorse, a spiritual sign, 
+                Of abundance and love in a sacred design. 
+                New feelings are rising like bubbles to light, 
+                To fill up the spirit with quiet delight.`,
+            "2 of Cups.png": `Two Fish in a circle, a dance in the tide, 
+                With nothing to fear and with nothing to hide. 
+                A bond that is balanced, a heart-to-heart flow, 
+                Where seeds of a meaningful connection grow. 
+                In harmony swimming, they move as a pair, 
+                A sacred agreement the two of them share.`,
+            "3 of Cups.png": `Three Fish in the shallows are gathered in play, 
+                In a bright celebration of a beautiful day. 
+                Friendship is flowing and community sings, 
+                The joy that a shared understanding brings. 
+                A circle of support and a chorus of grace, 
+                Finding the warmth in a familiar space.`,
+            "4 of Cups.png": `Four Fish in the stillness, a quiet retreat, 
+                Where the pulse of the ocean is steady and sweet. 
+                A pause for the spirit, a look deep within, 
+                To find where the paths of the future begin. 
+                In peaceful reflection, the soul finds its rest, 
+                And knows that the quietest moments are blest.`,
+            "5 of Cups.png": `Five Fish are migrating to a fresh, flowing stream, 
+                Following the light of a comforting dream. 
+                Seeking the waters where kindness is found, 
+                Where hope and the beauty of healing abound. 
+                A shift in the current, a brave move to make, 
+                For the peace and the growth that a journey can wake.`,
+            "6 of Cups.png": `Six Fish in the sunlight, a memory's glow, 
+                Of the sweet, simple joys that we used to know. 
+                Innocence ripples through the water so clear, 
+                Bringing the warmth of the past very near. 
+                A gift from the heart, a nostalgic refrain, 
+                Like the scent of a blossom or sun after rain.`,
+            "7 of Cups.png": `Seven Fish drifting in an ocean of choice, 
+                Listening deep for the internal voice. 
+                So many treasures and dreams in the deep, 
+                And many great promises ready to keep. 
+                An exploration of all that could be, 
+                In the vast, open blue of a limitless sea.`,
+            "8 of Cups.png": `Eight Fish are swimming to a much deeper blue, 
+                To find a perspective that's honest and new. 
+                Seeking the wisdom the silence can bring, 
+                To listen to what the great spirit may sing. 
+                A journey for meaning, a quest for the soul, 
+                To find the true pieces that make the heart whole.`,
+            "9 of Cups.png": `Nine Fish in a garden of coral and light, 
+                A vision of plenty and a heart's delight. 
+                Contentment is found in the gratitude shown, 
+                For the seeds of a dream that have gracefully grown. 
+                The wish is fulfilled and the spirit is glad, 
+                In the finest of garments the ocean has clad.`,
+            "10 of Cups.png": `Ten Fish in a school, in a radiant line, 
+                A vision of harmony, bright and divine. 
+                Family and home in a lasting embrace, 
+                A spirit of joy in a sanctuary space. 
+                The cycle is full and the blessings are deep, 
+                In the beautiful peace that the ocean can keep.`,
+            "Page of Cups.png": `The Angel Fish drifts with a curious grace, 
+                Finding the wonder in every new space. 
+                A creative whisper, a message of art, 
+                To waken the dreams in a soft, open heart. 
+                With eyes full of magic and spirit so light, 
+                She brings the first spark of a soulful delight.`,
+            "Knight of Cups.png": `The Swordfish is surging through currents of blue, 
+                To follow the quest of the honest and true. 
+                A brave heart pursuing a romantic ideal, 
+                With a passion that makes every mystery real. 
+                He carries an invitation of grace, 
+                To find in the spirit a beautiful place.`,
+            "Queen of Cups.png": `The Beta Fish gazes to the right and the deep, 
+                Where secrets of healing and intuition sleep. 
+                She feels every ripple, she hears every sigh, 
+                With the calm of the sea and the light of the sky. 
+                An emotional wisdom that's tender and vast, 
+                To soothe every worry and shadow of past.`,
+            "King of Cups.png": `The Beta Fish turns to the left and the shore, 
+                A guardian of peace who asks nothing more. 
+                Master of tides and the king of the heart, 
+                He plays with great kindness his generous part. 
+                A leader of spirit who stays ever calm, 
+                With a presence that acts like a restorative balm.`,
+
+            // --- PENTACLES ---
+            "1 of Pentacles.png": `The Bottom Egg rests in the richness of soil, 
+                The promise of harvest and reward for the toil. 
+                A seed has been planted, so sturdy and deep, 
+                A treasure of earth for the spirit to keep. 
+                With stable foundations and prosperity's light, 
+                The path to abundance is clear and is bright.`,
+            "2 of Pentacles.png": `Two Eggs of Life in a rhythmic refrain, 
+                Like sunlight and shadow or dancing in rain. 
+                A playful adjustment, a flexible grace, 
+                As every new challenge is met in its place. 
+                Managing resources with ease and with skill, 
+                Moving in time with a balanced will.`,
+            "3 of Pentacles.png": `Three Eggs of Life in a pattern of three, 
+                A vision of what a great effort can be. 
+                With teamwork and talent, the masteries grow, 
+                In the steady and beautiful creative flow. 
+                Building together with pride in the craft, 
+                Like a sturdy-built house or a well-guided raft.`,
+            "4 of Pentacles.png": `Four Eggs of Life in a square of repose, 
+                The safety and comfort that certainty knows. 
+                Building a foundation that's solid and sure, 
+                With a focus on all that is built to endure. 
+                A spirit of order, a protective design, 
+                Where the peace of security starts to align.`,
+            "5 of Pentacles.png": `Five Eggs of Life in a search for the light, 
+                To find a new warmth in the chill of the night. 
+                The value of support is a treasure to find, 
+                With a hopeful perspective and heart that is kind. 
+                Walking together toward a bright, open door, 
+                Seeking the abundance that life has in store.`,
+            "6 of Pentacles.png": `Six Eggs of Life in a gesture of care, 
+                The kindness of spirit that's willing to share. 
+                A generous balance, a flow of the heart, 
+                Where everyone plays their essential part. 
+                The cycle of giving is steady and true, 
+                Bringing a blessing to many and few.`,
+            "7 of Pentacles.png": `Seven Eggs of Life in a garden of rest, 
+                Where the work of the season is quietly blest. 
+                A time to evaluate all that has grown, 
+                And honor the patience that you have shown. 
+                The reward is approaching, the vision is clear, 
+                As the day of the harvest is drawing so near.`,
+            "8 of Pentacles.png": `Eight Eggs of Life under diligent hands, 
+                The focus and craft that the spirit demands. 
+                With every small detail, the mastery grows, 
+                In the rhythm of work that the artisan knows. 
+                Refining the talent with purpose and pride, 
+                With a steady commitment and light as the guide.`,
+            "9 of Pentacles.png": `Nine Eggs of Life in a garden so fair, 
+                With a sense of refinement and grace in the air. 
+                Self-reliance is steady, a luxurious peace, 
+                As the worries of life and the struggles all cease. 
+                The spirit is independent, vibrant, and free, 
+                In the beautiful shade of a prosperous tree.`,
+            "10 of Pentacles.png": `Ten Eggs of Life in a legacy grand, 
+                Like a forest that grows on a fertile land. 
+                The abundance of family, a history deep, 
+                With traditions and treasures the future will keep. 
+                A cycle of wealth and a lasting embrace, 
+                In a sturdy and beautiful sanctuary space.`,
+            "Page of Pentacles.png": `A tiny, golden seed in the center of sight, 
+                A focused beginning in clarity's light. 
+                The first step is taken on practical ground, 
+                Where the sparks of a new, earthy project are found. 
+                With a student's heart and a vision so clear, 
+                The path of the builder is drawing so near.`,
+            "Knight of Pentacles.png": `A growing Egg in a circle of strength, 
+                Determined to travel the road's every length. 
+                Diligent progress and a pulse that is slow, 
+                Watching the fruits of the industry grow. 
+                With a steady commitment that never will tire, 
+                He tends to the hearth and the practical fire.`,
+            "Queen  of Pentacles.png": `A large, centered Egg in a circle of grace, 
+                Bringing a warmth to the heart of the space. 
+                The spirit of comfort, the touch of the real, 
+                With a nurturing hand and a soul that can heal. 
+                She harvests abundance with a generous mind, 
+                In the beauty and plenty that her efforts find.`,
+            "King of Pentacles.png": `The Egg is now fitted, the circle is grand, 
+                A master of all in the reach of the land. 
+                A wealthy provider, a guardian of gold, 
+                With a story of steady success to be told. 
+                He stands as a pillar, a shelter, and guide, 
+                With the wisdom of earth and a quieted pride.`,
+
+            // --- SWORDS ---
+            "1 of Swords.png": `The Four Point Star cuts through the grey and the cold, 
+                With a truth that is daring and a mind that is bold. 
+                A breakthrough of spirit, a sharp, sudden spark, 
+                A lantern of logic to banish the dark. 
+                The air is now clear and the vision is new, 
+                As a single great idea comes shining through.`,
+            "2 of Swords.png": `Two Stars in the silence are balanced and still, 
+                At the center of thought and a quieted will. 
+                A choice is approaching with a peaceful intent, 
+                In a moment of grace that is sacredly spent. 
+                With a heart that is calm and a mind that is clear, 
+                The voice of the spirit is easy to hear.`,
+            "3 of Swords.png": `Three Stars in the heavens are shedding their light, 
+                To clear out the shadows and sharpen the sight. 
+                The truth may be piercing, yet growth is the prize, 
+                As the veil is now lifted from the spirit's eyes. 
+                In the wake of the honest, a healing can bloom, 
+                Bringing stars to the heart and an end to the gloom.`,
+            "4 of Swords.png": `Four Stars in a canopy, steady and bright, 
+                A shield for the spirit in the quiet of night. 
+                A period of rest where the busy thoughts cease, 
+                To recover the strength in a temple of peace. 
+                In silent reflection and deep meditation, 
+                The soul finds a stable and calm foundation.`,
+            "5 of Swords.png": `Five Stars are now shifting to a different sky, 
+                As the old ways of thinking are passing us by. 
+                A lesson is learned and a strategy changed, 
+                As the maps of the mind are all rearranged. 
+                With wisdom as armor and truth as the shield, 
+                A much stronger vision is found in the field.`,
+            "6 of Swords.png": `Six Stars like a beacon are lighting the way, 
+                From the mists of the night to the light of the day. 
+                Moving toward waters more tranquil and deep, 
+                Where the promises made are the promises kept. 
+                A journey for peace in a well-guided boat, 
+                Keeping the spirit and purpose afloat.`,
+            "7 of Swords.png": `Seven Stars sparkle with a clever design, 
+                As the pieces of planning begin to align. 
+                A strategy crafted with a sharp, nimble mind, 
+                To leave the old burdens and worries behind. 
+                With a quieted step and a focus so true, 
+                The clever path opens a door for the new.`,
+            "8 of Swords.png": `Eight Stars are a circle of light in the air, 
+                A moment of waiting with a mindful care. 
+                In the pause of the spirit, the clarity grows, 
+                In the way that a river or morning light flows. 
+                The ties are all loosening, the vision is wide, 
+                With the power of thought as the internal guide.`,
+            "9 of Swords.png": `Nine Stars in the rafters are beginning to glow, 
+                As the currents of thought and of consciousness flow. 
+                The mind is a vessel, a powerful deep, 
+                Where the secrets of logic and memory sleep. 
+                In the processing time, the spirit finds rest, 
+                By knowing that every true thought is a test.`,
+            "10 of Swords.png": `Ten Stars in a line as the cycle is through, 
+                To welcome a morning that's honest and new. 
+                The end of the path and the dawn of the light, 
+                As the shadows of old are all put to the flight. 
+                A rising horizon, a spirit reborn, 
+                In the beautiful peace of a clear-sighted morn.`,
+            "Page of Swords.png": `A sudden spark in a vast, open sky, 
+                Where the first sharp thoughts of the spirit fly. 
+                She carries a message of mental delight, 
+                With a tongue that is quick and a vision so bright. 
+                A curious seeker of all that is true, 
+                Bringing a crisp, honest wind to the view.`,
+            "Knight of Swords.png": `A double-bright flash in the heat of the race, 
+                With the wind of the heavens upon his face. 
+                Bold in his movement and swift in his word, 
+                The voice of a spirit that needs to be heard. 
+                He surges ahead with a focused intent, 
+                Like a golden arrow the heavens have sent.`,
+            "Queen of Swords.png": `A steady brilliance that anchors the night, 
+                With a crystalline focus and unwavering light. 
+                Clear-sighted and graceful, she stands on her own, 
+                With the map of the spirit and intellect known. 
+                Her honesty shines like a beacon of grace, 
+                Bringing a beautiful truth to the space.`,
+            "King of Swords.png": `The highest of lights in a crown of the air, 
+                With a mind that is principled, noble, and fair. 
+                An intellectual pillar, a guardian of right, 
+                Who leads through the shadows with logic and light. 
+                His wisdom is vast and his judgment is true, 
+                Looking with grace on the many and few.`,
+
+            // --- WANDS ---
+            "1 of Wands.png": `The Dove takes flight on a wing and a prayer, 
+                With a spark of new spirit that lightens the air. 
+                An inspiration is born in a moment of grace, 
+                To start a new project and find a new space. 
+                The fire is lit and the passion is true, 
+                As the path of the maker opens to view.`,
+            "2 of Wands.png": `Two Swallows are perched on the edge of the world, 
+                With the map of a journey about to be furled. 
+                Planning the future with vision and pride, 
+                With the great open heavens as a beautiful guide. 
+                Stepping out boldly where horizons are vast, 
+                To build on the wisdom and strength of the past.`,
+            "3 of Wands.png": `Three Swallows are watching the rise of the sun, 
+                For the wonderful ventures that have just begun. 
+                Looking out far where the deep waters meet, 
+                With a steady assurance and rhythm so sweet. 
+                New opportunities call from the blue, 
+                As the ships of the spirit come sailing through.`,
+            "4 of Wands.png": `Four Swallows are nesting in safety and peace, 
+                Where the worries of travel and wandering cease. 
+                A joyful homecoming, a stable foundation, 
+                A moment of rest and a grand celebration. 
+                The pillars are sturdy, the welcome is warm, 
+                A beautiful shelter from every great storm.`,
+            "5 of Wands.png": `Five Swallows are circling in a lively display, 
+                In a healthy exchange on a bright, busy day. 
+                A contest of spirit, a sharpening of skill, 
+                With a playful intent and a vigorous will. 
+                Growth is the prize in the movement and flight, 
+                As ideas take wing in the clarity of light.`,
+            "6 of Wands.png": `Six Swallows are gliding in a triumphant line, 
+                Where the honors of spirit and victory shine. 
+                A public recognition, a well-deserved praise, 
+                In the glow of the sun and the best of our days. 
+                The journey is honored, the effort is known, 
+                In the beautiful seeds of success you have sown.`,
+            "7 of Wands.png": `Seven Swallows are holding their place in the sky, 
+                With a courage of heart and a spirit so high. 
+                Standing firm in the truth and the values we hold, 
+                In a manner that's quiet and steady and bold. 
+                The ground is secured and the vision is clear, 
+                With a spirit that knows neither shadow nor fear.`,
+            "8 of Wands.png": `Eight Swallows are darting in a swift, golden stream, 
+                Like the flight of a wish or the pulse of a dream. 
+                Messages travel on the wings of the wind, 
+                As the threads of the future are rapidly pinned. 
+                The momentum is high and the movement is fast, 
+                Bringing a beautiful clarity at last.`,
+            "9 of Wands.png": `Nine Swallows are resting on a sturdy-built wall, 
+                Ready to rise and to answer the call. 
+                Resilience is found in the strength to endure, 
+                With a purpose that's steady and vision so pure. 
+                Standing guard at the end of a long, busy road, 
+                With a spirit that carries a beautiful load.`,
+            "10 of Wands.png": `Ten Swallows are nearing the end of the flight, 
+                As the home in the distance comes into the sight. 
+                One final push toward the goal in the hand, 
+                To bring the great project to rest on the land. 
+                The labor is plenty but the reward is so near, 
+                As the heights of completion begin to appear.`,
+            "Page of Wands.png": `A swift shadow against the bright blue, 
+                With a heart that is eager and a vision that's new. 
+                An adventurous spirit of playful delight, 
+                Seeking the treasures that shine in the light. 
+                A spark of inspiration is carried on wing, 
+                To hear what the songs of the journey may sing.`,
+            "Knight of Wands.png": `A surge of spirit in high-energy flight, 
+                Across the wide heavens in the heat of the light. 
+                A bold heart moving with a passionate flare, 
+                With the scent of the summer and fire in the air. 
+                He follows the impulse where the wild winds blow, 
+                With a courage that makes every inner light glow.`,
+            "Queen of Wands.png": `Rising high with a confident grace, 
+                Bringing a warmth and a light to the space. 
+                Social and radiant, she knows her own power, 
+                In the beauty and strength of the sunniest hour. 
+                With a generous heart and a spirit so kind, 
+                She leaves a trail of bright inspiration behind.`,
+            "King of Wands.png": `Scanning the future with a visionary eye, 
+                A master of fire in the vast, open sky. 
+                A leader of spirit who creates and commands, 
+                With the spark of the sun in his capable hands. 
+                He builds with a passion that's noble and true, 
+                A beacon of light for the many and few.`
         };
     </script>
 </body>
