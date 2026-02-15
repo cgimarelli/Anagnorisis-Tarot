@@ -705,16 +705,19 @@ with col1:
         all_cards = [f for f in os.listdir(CARD_DIR) if f.endswith(('.png', '.jpg', '.jpeg'))]
         st.session_state.current_spread = random.sample(all_cards, 3)
         st.session_state.spread_type = "3-card"
+        st.session_state.flipped = False
 
     if st.button("Single Card Spread", use_container_width=True):
         all_cards = [f for f in os.listdir(CARD_DIR) if f.endswith(('.png', '.jpg', '.jpeg'))]
         st.session_state.current_spread = random.sample(all_cards, 1)
         st.session_state.spread_type = "single"
+        st.session_state.flipped = False
 
     if st.button("Celtic Cross Spread", use_container_width=True):
         all_cards = [f for f in os.listdir(CARD_DIR) if f.endswith(('.png', '.jpg', '.jpeg'))]
         st.session_state.current_spread = random.sample(all_cards, 10)
         st.session_state.spread_type = "cross"
+        st.session_state.flipped = False
 
 with col2:
     st.write("Three cards for the journey, the then and now, the seeds that were planted, the fruit on the bough. To see how the past and the future for now")
@@ -734,7 +737,7 @@ if st.session_state.current_spread:
     _, reveal_col, _ = st.columns([1, 1, 1])
     with reveal_col:
         if not st.session_state.flipped:
-            if st.button("✨ Reveal Spread ✨"):
+            if st.button("℈ Reveal Spread ℰℲ"):
                 st.session_state.flipped = True
                 st.rerun()
 
