@@ -31,7 +31,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider 
+  domain="app.soulfirespark.com" 
+  proxyUrl="https://clerk.app.soulfirespark.com"
+>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
             <header className="flex justify-end items-center p-4 gap-4 h-16">
